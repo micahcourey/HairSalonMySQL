@@ -42,7 +42,6 @@
             $stylist_id = 1;
             $test_client = new Client($name, $id, $stylist_id);
             $test_client->save();
-
             $name2 = "Phil Galfond";
             $stylist_id2 = 2;
             $test_client2 = new Client($name2, $id, $stylist_id2);
@@ -71,6 +70,25 @@
             $result = Client::getAll();
             $this->assertEquals([], $result);
         }
+
+        function testFind()
+        {
+            //Arrange
+            $id = null;
+            $name = "Tom Dwan";
+            $stylist_id = 1;
+            $test_client = new Client($name, $id, $stylist_id);
+            $test_client->save();
+            $name2 = "Phil Galfond";
+            $stylist_id2 = 2;
+            $test_client2 = new Client($name2, $id, $stylist_id2);
+            $test_client2->save();
+            //Act
+            $result = Client::find($test_client->getId());
+            //Assert
+            $this->assertEquals($test_client, $result);
+        }
+
 
     }
 ?>
