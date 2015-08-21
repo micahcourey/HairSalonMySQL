@@ -32,4 +32,6 @@
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });
 
+    
+
 ?>
