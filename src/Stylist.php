@@ -4,8 +4,7 @@
     * @backupStaticAttributes disabled
     */
 
-    require_once "src/Cuisine.php";
-    require_once "src/Restaurant.php";
+    require_once "src/Stylist.php";
 
     $server = 'mysql:host=localhost;dbname=hair_salon_test';
     $username = 'root';
@@ -19,6 +18,34 @@
             Stylist::deleteAll();
         }
 
+        function testGetName()
+        {
+            //Arrange
+            $name = "Candice";
+            $id = null;
+            $test_stylist = new Stylist($name, $id);
+            $test_stylist->save();
+            //Act
+            $result = $test_stylist->getName();
+            //Assert
+            $this->assertEquals($name, $result);
+        }
+
+        function testSetName()
+        {
+            //Arrange
+            $name = "Candice";
+            $id = null;
+            $test_stylist = new Stylist($name, $id);
+            $test_stylist->save();
+            //Act
+            $new_name = "Siting";
+            $test_stylist->setName($new_name);
+            //Assert
+            $result = $test_stylist->getName();
+            $this->assertEquals($new_name, $result);
+        }
+
         function test_save()
         {
             //Arrange
@@ -28,6 +55,8 @@
             $test_stylist->save();
             //Assert
             $result = Stylist::getAll();
-            $this->assertEquals($test_stylist, $result[0]);            
+            $this->assertEquals($test_stylist, $result[0]);
         }
+
     }
+?>
