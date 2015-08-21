@@ -16,14 +16,15 @@
     {
         protected function tearDown()
         {
-            Stylist::deleteAll();
             Client::deleteAll();
+            Stylist::deleteAll();
         }
 
         function test_save()
         {
             //Arrange
             $name = "Tom Dwan";
+            $id = null;
             $stylist_id = 1;
             $test_client = new Client($name, $id, $stylist_id);
             //Act
@@ -32,5 +33,44 @@
             $result = Client::getAll();
             $this->assertEquals([$test_client], $result);
         }
+
+        function test_getAll()
+        {
+            //Arrange
+            $id = null;
+            $name = "Tom Dwan";
+            $stylist_id = 1;
+            $test_client = new Client($name, $id, $stylist_id);
+            $test_client->save();
+
+            $name2 = "Phil Galfond";
+            $stylist_id2 = 2;
+            $test_client2 = new Client($name2, $id, $stylist_id2);
+            $test_client2->save();
+            //Act
+            $result = Client::getAll();
+            //Assert
+            $this->assertEquals([$test_client, $test_client2], $result);
+        }
+
+        function test_deleteAll()
+        {
+            //Arrange
+            $id = null;
+            $name = "Tom Dwan";
+            $sylist_id = 1;
+            $test_client = new Client($name, $id, $stylist_id);
+            $test_client->save();
+            $name2 = "Phil Galfond";
+            $stylist_id2 = 2;
+            $test_client2 = new Client($name2, $id, $stylist_id2);
+            $test_client2->save();
+            //Act
+            $result = Client::deleteAll();
+            //Assert
+            $result = Client::getAll();
+            $this->assertEquals([], $result);
+        }
+
     }
 ?>
