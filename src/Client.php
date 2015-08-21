@@ -85,6 +85,5 @@
             }
             return $found_client;
         }
-
     }
 ?>

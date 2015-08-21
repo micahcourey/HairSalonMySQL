@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+        <title>Stylist</title>
+    </head>
+    <body>
+        <div>
+            <h1>{{ stylist.getName }} clint list</h1>
+            <form action='/clients' method='post'>
+                <input id='stylist_id' name='stylist_id' type='hidden' value='{{ stylist.getId }}'>
+                <div class='form-group'>
+                    <label for="name">Clients name:</label>
+                    <button type='submit'>Add Stylist</button>
+                    <input id='name' name='name' type='text' class='form-control'>
+                </div>
+            </form>
+
+            {% if clients is not empty %}
+                    <ul>
+                        {% for client in clients %}
+                            <div class='stylist'>
+                                <li><h4> {{ client.getName }} </h4></li>
+                                <li><a href='/clients/{{ client.getId }}/edit'>Edit this client</a></li>
+                            </div>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>{{ stylist.getName }} currently has no clients!</p>
+                {% endif %}
+            <a href='/'>home</a>
+        </div>
+    </body>
+</html>
