@@ -71,7 +71,7 @@
             $this->assertEquals([], $result);
         }
 
-        function testFind()
+        function test_find()
         {
             //Arrange
             $id = null;
@@ -88,6 +88,25 @@
             //Assert
             $this->assertEquals($test_client, $result);
         }
+
+        function test_updateName()
+        {
+            //Arrange
+            $id = null;
+            $name = "Tom Dwan";
+            $stylist_id = 1;
+            $test_client = new Client($name, $id, $stylist_id);
+            $test_client->save();
+            $new_name = "Durrrr";
+            $name = $new_name;
+            //Act
+            $test_client->update($name, $new_name);
+            //Assert
+            $clients = Client::getAll();
+            $result = $clients[0]->getName();
+            $this->assertEquals($new_name, $result);
+        }
+
 
 
     }
