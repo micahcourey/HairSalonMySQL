@@ -16,4 +16,20 @@
 
     use Symfony\Component\HttpFoundation\Request;
     Request::enableHttpMethodParameterOverride();
+
+    $app->get('/', function() use($app) {
+        return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
+
+        $app->post('/stylists', function() use($app) {
+        $id = null;
+        $stylist = new Stylist($_POST['name'], $id);
+        $stylist->save();
+        return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
+    });
+
+    $app->post('/delete_stylists', function() use($app) {
+        Stylist::deleteAll();
+        return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
+    });
+
 ?>
