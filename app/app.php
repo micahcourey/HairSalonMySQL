@@ -3,6 +3,8 @@
     require_once __DIR__.'/../src/Stylist.php';
     require_once __DIR__.'/../src/Client.php';
 
+    $app['debug'] = true;
+
     $app = new Silex\Application();
 
     $server = 'mysql:host=localhost:8889;dbname=hair_salon';
@@ -21,7 +23,7 @@
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });
 
-        $app->post('/stylists', function() use($app) {
+    $app->post('/stylists', function() use($app) {
         $id = null;
         $stylist = new Stylist($_POST['name'], $id);
         $stylist->save();
@@ -40,7 +42,7 @@
 
     $app->get('/stylists/{id}', function($id) use ($app) {
         $stylist = Stylist::find($id);
-        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
+        return $app['twig']->render('stylist.html.twig', array('stylists' => $stylist, 'client' => $stylist->getClients()));
     });
 
     $app->post('clients', function() use($app) {
@@ -50,19 +52,19 @@
         $client->save();
         $stylist = Stylist::find($stylist_id);
         $clients = $stylist->getClients();
-        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => $clients));
+        return $app['twig']->render('stylist.html.twig', array('stylists' => $stylist, 'client' => $clients));
     });
 
     $app->get('/stylists/{id}/edit', function($id) use($app) {
         $stylist = Stylist::find($id);
-        return $app['twig']->render('stylist_edit.html.twig', array('stylist' => $stylist));
+        return $app['twig']->render('stylist_edit.html.twig', array('stylists' => $stylist));
     });
 
     $app->patch('/stylists/{id}', function($id) use($app) {
         $name = $_POST['name'];
         $stylist = Stylist::find($id);
         $stylist->update($name);
-        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
+        return $app['twig']->render('stylist.html.twig', array('stylists' => $stylist, 'clients' => $stylist->getClients()));
     });
 
     $app->delete('/stylists/{id}', function($id) use($app) {
@@ -75,7 +77,7 @@
         $client = Client::find($id);
         $stylist_id = $client->getStylistId();
         $stylist = Stylist::find($stylist_id);
-        return $app['twig']->render('client_edit.html.twig', array('client' => $client, 'stylist' => $stylist));
+        return $app['twig']->render('client_edit.html.twig', array('clients' => $client, 'stylists' => $stylist));
     });
 
     $app->patch('/clients/{id}', function($id) use($app) {
@@ -87,14 +89,14 @@
                 $client->update($field, $new_value);
             }
         }
-        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
+        return $app['twig']->render('stylist.html.twig', array('stylists' => $stylist, 'clients' => $stylist->getClients()));
     });
 
     $app->delete('/clients/{id}', function($id) use($app) {
         $client = Client::find($id);
         $stylist = Stylist::find($client->getStylistId());
         $client->delete();
-        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
+        return $app['twig']->render('stylist.html.twig', array('stylists' => $stylist, 'clients' => $stylist->getClients()));
     });
 
     return $app;

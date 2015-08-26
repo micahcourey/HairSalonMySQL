@@ -5,13 +5,13 @@
     </head>
     <body>
         <div>
-            <h1>{{ stylist.getName }} clint list</h1>
+            <h1>{{ stylist.getName }} client list</h1>
             <form action='/clients' method='post'>
                 <input id='stylist_id' name='stylist_id' type='hidden' value='{{ stylist.getId }}'>
                 <div class='form-group'>
                     <label for="name">Clients name:</label>
-                    <button type='submit'>Add Stylist</button>
-                    <input id='name' name='name' type='text' class='form-control'>
+                    <button type='submit'>Add Client</button>
+                    <input id='name' name='name' type='text' class='form-group'>
                 </div>
             </form>
 
@@ -25,7 +25,7 @@
                         {% endfor %}
                     </ul>
                 {% else %}
-                    <p>{{ stylist.getName }} currently has no clients!</p>
+                    <p>{{ stylist.getName }} has no clients</p>
                 {% endif %}
             <a href='/'>home</a>
         </div>
