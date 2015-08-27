@@ -4,7 +4,7 @@
         <title>Stylist</title>
     </head>
     <body>
-        <div>
+        <div class="container">
             <h1>{{ stylist.getName }} client list</h1>
             <form action='/clients' method='post'>
                 <input id='stylist_id' name='stylist_id' type='hidden' value='{{ stylist.getId }}'>
@@ -19,7 +19,7 @@
                     <ul>
                         {% for client in clients %}
                             <div class='stylist'>
-                                <li><h4> {{ client.getName }} </h4></li>
+                                <li>{{ client.getName }}</li>
                                 <li><a href='/clients/{{ client.getId }}/edit'>Edit this client</a></li>
                             </div>
                         {% endfor %}
