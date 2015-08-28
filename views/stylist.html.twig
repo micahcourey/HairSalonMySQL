@@ -5,7 +5,7 @@
     </head>
     <body>
         <div class="container">
-            <h1>{{ stylist.getName }} client list</h1>
+            <h1>{{ stylist.getName }}'s client list</h1>
             <form action='/clients' method='post'>
                 <input id='stylist_id' name='stylist_id' type='hidden' value='{{ stylist.getId }}'>
                 <div class='form-group'>
@@ -13,6 +13,7 @@
                     <button type='submit'>Add Client</button>
                     <input id='name' name='name' type='text' class='form-group'>
                 </div>
+                <p><a href='/stylists/{{ stylist.getId }}/edit'>Edit or delete</a> {{stylist.getName }}.</p>
             </form>
 
             {% if clients is not empty %}
@@ -25,7 +26,7 @@
                         {% endfor %}
                     </ul>
                 {% else %}
-                    <p>{{ stylist.getName }} has no clients</p>
+                    <h3>{{ stylist.getName }} has no clients</h3>
                 {% endif %}
             <a href='/'>home</a>
         </div>

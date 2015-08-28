@@ -97,14 +97,12 @@
             $stylist_id = 1;
             $test_client = new Client($name, $id, $stylist_id);
             $test_client->save();
+
             $new_name = "Durrrr";
-            $name = $new_name;
             //Act
-            $test_client->update($name, $new_name);
+            $test_client->update($new_name);
             //Assert
-            $clients = Client::getAll();
-            $result = $clients[0]->getName();
-            $this->assertEquals($new_name, $result);
+            $this->assertEquals("Durrrr", $test_client->getName());
         }
 
         function test_delete()

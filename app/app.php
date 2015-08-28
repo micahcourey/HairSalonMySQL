@@ -57,14 +57,14 @@
 
     $app->get('/stylists/{id}/edit', function($id) use($app) {
         $stylist = Stylist::find($id);
-        return $app['twig']->render('stylist_edit.html.twig', array('stylists' => $stylist));
+        return $app['twig']->render('stylist_edit.html.twig', array('stylist' => $stylist));
     });
 
     $app->patch('/stylists/{id}', function($id) use($app) {
         $name = $_POST['name'];
         $stylist = Stylist::find($id);
         $stylist->update($name);
-        return $app['twig']->render('stylist.html.twig', array('stylists' => $stylist, 'clients' => $stylist->getClients()));
+        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
     });
 
     $app->delete('/stylists/{id}', function($id) use($app) {
@@ -77,26 +77,21 @@
         $client = Client::find($id);
         $stylist_id = $client->getStylistId();
         $stylist = Stylist::find($stylist_id);
-        return $app['twig']->render('client_edit.html.twig', array('clients' => $client, 'stylists' => $stylist));
+        return $app['twig']->render('client_edit.html.twig', array('client' => $client, 'stylist' => $stylist));
     });
 
     $app->patch('/clients/{id}', function($id) use($app) {
+        $name = $_POST['name'];
         $client = Client::find($id);
-        $stylist_id = $_POST['stylist_id'];
-        $stylist = Stylist::find($stylist_id);
-        foreach ($_POST as $field => $new_value) {
-            if (!empty($new_value)) {
-                $client->update($field, $new_value);
-            }
-        }
-        return $app['twig']->render('stylist.html.twig', array('stylists' => $stylist, 'clients' => $stylist->getClients()));
+        $client->update($name);
+        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
     });
 
     $app->delete('/clients/{id}', function($id) use($app) {
         $client = Client::find($id);
         $stylist = Stylist::find($client->getStylistId());
         $client->delete();
-        return $app['twig']->render('stylist.html.twig', array('stylists' => $stylist, 'clients' => $stylist->getClients()));
+        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
     });
 
     return $app;
