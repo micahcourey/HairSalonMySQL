@@ -42,17 +42,17 @@
 
     $app->get('/stylists/{id}', function($id) use ($app) {
         $stylist = Stylist::find($id);
-        return $app['twig']->render('stylist.html.twig', array('stylists' => $stylist, 'client' => $stylist->getClients()));
+        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
     });
 
-    $app->post('clients', function() use($app) {
+    $app->post('/clients', function() use($app) {
         $name = $_POST['name'];
         $stylist_id = $_POST['stylist_id'];
         $client = new Client($name, $id = null, $stylist_id);
         $client->save();
         $stylist = Stylist::find($stylist_id);
         $clients = $stylist->getClients();
-        return $app['twig']->render('stylist.html.twig', array('stylists' => $stylist, 'client' => $clients));
+        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => $clients));
     });
 
     $app->get('/stylists/{id}/edit', function($id) use($app) {

@@ -18,7 +18,7 @@
             {% if clients is not empty %}
                     <ul>
                         {% for client in clients %}
-                            <div class='stylist'>
+                            <div>
                                 <li>{{ client.getName }}</li>
                                 <li><a href='/clients/{{ client.getId }}/edit'>Edit this client</a></li>
                             </div>

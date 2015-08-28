@@ -57,7 +57,7 @@
             //Arrange
             $id = null;
             $name = "Tom Dwan";
-            $sylist_id = 1;
+            $stylist_id = 1;
             $test_client = new Client($name, $id, $stylist_id);
             $test_client->save();
             $name2 = "Phil Galfond";
