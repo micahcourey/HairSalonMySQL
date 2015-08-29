@@ -84,7 +84,7 @@
         $name = $_POST['name'];
         $client = Client::find($id);
         $client->update($name);
-        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
+        return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });
 
     $app->delete('/clients/{id}', function($id) use($app) {
