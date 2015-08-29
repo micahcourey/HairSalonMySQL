@@ -19,7 +19,7 @@ _An app to allow users to create, read, update, delete stylists names and client
 * _Start php server in web directory._
 * _Direct browser to localhost:8000/_
 
-* _MySQL Commands used:_
+**_MySQL Commands used:_**
 * _mysql.server.start_
 * _mysql -uroot -proot;_
 * _CREATE DATABASE hair_salon;_
