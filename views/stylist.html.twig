@@ -5,29 +5,29 @@
     </head>
     <body>
         <div class="container">
-            <h1>{{ stylist.getName }}'s client list</h1>
-            <form action='/clients' method='post'>
+            <h1>{{ stylist.getName }}'s Client List</h1>
+            <form action='/clients' method='post' class='form-inline'>
                 <input id='stylist_id' name='stylist_id' type='hidden' value='{{ stylist.getId }}'>
                 <div class='form-group'>
-                    <label for="name">Clients name:</label>
-                    <button type='submit'>Add Client</button>
-                    <input id='name' name='name' type='text' class='form-group'>
+                    <input id='name' name='name' type='text' class='form-control' placeholder="Enter Client's Name">
+                    <button type='submit' class='btn btn-success'>Add Client</button>
                 </div>
-                <p><a href='/stylists/{{ stylist.getId }}/edit'>Edit or delete</a> {{stylist.getName }}.</p>
+
             </form>
 
             {% if clients is not empty %}
                     <ul>
                         {% for client in clients %}
                             <div>
-                                <li>{{ client.getName }}</li>
-                                <li><a href='/clients/{{ client.getId }}/edit'>Edit this client</a></li>
+                                <li>{{ client.getName }} | <a href='/clients/{{ client.getId }}/edit'>Edit or delete this client</a></li>
                             </div>
                         {% endfor %}
                     </ul>
                 {% else %}
                     <h3>{{ stylist.getName }} has no clients</h3>
                 {% endif %}
+
+            <p><a href='/stylists/{{ stylist.getId }}/edit'>Edit or delete</a> {{stylist.getName }}.</p>
             <a href='/'>home</a>
         </div>
     </body>
