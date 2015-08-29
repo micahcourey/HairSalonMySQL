@@ -19,17 +19,17 @@ _An app to allow users to create, read, update, delete stylists names and client
 * _Start php server in web directory._
 * _Direct browser to localhost:8000/_
 
-MySQL Commands used:
-mysql.server.start
-mysql -uroot -proot;
-CREATE DATABASE hair_salon;
-USE hair_salon;
-CREATE TABLE stylist (id serial PRIMARY KEY, name VARCHAR (255));
-CREATE TABLE client (id serial PRIMARY KEY, name VARCHAR (255), phone VARCHAR (255), last_visit DATE, stylist_id INT);
-CREATE DATABASE hair_salon_test;
-USE hair_salon_test;
-CREATE TABLE stylist (id serial PRIMARY KEY, name VARCHAR (255));
-CREATE TABLE client (id serial PRIMARY KEY, name VARCHAR (255), phone VARCHAR (255), last_visit DATE, stylist_id INT);
+* _MySQL Commands used:_
+* _mysql.server.start_
+* _mysql -uroot -proot;_
+* _CREATE DATABASE hair_salon;_
+* _USE hair_salon;_
+* _CREATE TABLE stylist (id serial PRIMARY KEY, name VARCHAR (255));_
+* _CREATE TABLE client (id serial PRIMARY KEY, name VARCHAR (255), phone VARCHAR (255), last_visit DATE, stylist_id INT);_
+* _CREATE DATABASE hair_salon_test;_
+* _USE hair_salon_test;_
+* _CREATE TABLE stylist (id serial PRIMARY KEY, name VARCHAR (255));_
+* _CREATE TABLE client (id serial PRIMARY KEY, name VARCHAR (255), phone VARCHAR (255), last_visit DATE, stylist_id INT);_
 
 ## Technologies Used
 
